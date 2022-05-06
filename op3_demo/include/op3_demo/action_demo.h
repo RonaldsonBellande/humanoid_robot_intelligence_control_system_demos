@@ -1,58 +1,54 @@
 /*******************************************************************************
-* Copyright 2017 ROBOTIS CO., LTD.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*******************************************************************************/
+ * Copyright 2017 ROBOTIS CO., LTD.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 
 /* Author: Kayman Jung */
 
 #ifndef ACTION_DEMO_H_
 #define ACTION_DEMO_H_
 
-#include <ros/ros.h>
 #include <ros/package.h>
+#include <ros/ros.h>
 #include <std_msgs/Int32.h>
 #include <std_msgs/String.h>
 
 #include <boost/thread.hpp>
 #include <yaml-cpp/yaml.h>
 
+#include "op3_action_module_msgs/IsRunning.h"
 #include "op3_demo/op_demo.h"
 #include "robotis_controller_msgs/JointCtrlModule.h"
 #include "robotis_controller_msgs/SetModule.h"
-#include "op3_action_module_msgs/IsRunning.h"
 
-namespace robotis_op
-{
+namespace robotis_op {
 
-class ActionDemo : public OPDemo
-{
- public:
+class ActionDemo : public OPDemo {
+public:
   ActionDemo();
   ~ActionDemo();
 
   void setDemoEnable();
   void setDemoDisable();
 
- protected:
-  enum ActionCommandIndex
-  {
+protected:
+  enum ActionCommandIndex {
     BrakeActionCommand = -2,
     StopActionCommand = -1,
   };
 
-  enum ActionStatus
-  {
+  enum ActionStatus {
     PlayAction = 1,
     PauseAction = 2,
     StopAction = 3,
@@ -74,7 +70,8 @@ class ActionDemo : public OPDemo
   void handleStatus();
 
   void parseActionScript(const std::string &path);
-  bool parseActionScriptSetName(const std::string &path, const std::string &set_name);
+  bool parseActionScriptSetName(const std::string &path,
+                                const std::string &set_name);
 
   bool playActionWithSound(int motion_index);
 
@@ -88,8 +85,8 @@ class ActionDemo : public OPDemo
 
   void setModuleToDemo(const std::string &module_name);
   void callServiceSettingModule(const std::string &module_name);
-  void actionSetNameCallback(const std_msgs::String::ConstPtr& msg);
-  void buttonHandlerCallback(const std_msgs::String::ConstPtr& msg);
+  void actionSetNameCallback(const std_msgs::String::ConstPtr &msg);
+  void buttonHandlerCallback(const std_msgs::String::ConstPtr &msg);
   void demoCommandCallback(const std_msgs::String::ConstPtr &msg);
 
   ros::Publisher module_control_pub_;

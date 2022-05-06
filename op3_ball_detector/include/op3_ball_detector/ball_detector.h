@@ -1,18 +1,18 @@
 /*******************************************************************************
-* Copyright 2017 ROBOTIS CO., LTD.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*******************************************************************************/
+ * Copyright 2017 ROBOTIS CO., LTD.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 
 /* Author: Kayman Jung */
 
@@ -21,88 +21,91 @@
 
 #include <string>
 
-#include <ros/ros.h>
+#include <cv_bridge/cv_bridge.h>
+#include <dynamic_reconfigure/server.h>
+#include <image_transport/image_transport.h>
 #include <ros/package.h>
-#include <std_msgs/Bool.h>
-#include <std_msgs/String.h>
+#include <ros/ros.h>
 #include <sensor_msgs/CameraInfo.h>
 #include <sensor_msgs/image_encodings.h>
-#include <dynamic_reconfigure/server.h>
-#include <cv_bridge/cv_bridge.h>
-#include <image_transport/image_transport.h>
+#include <std_msgs/Bool.h>
+#include <std_msgs/String.h>
 
+#include <boost/thread.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include <boost/thread.hpp>
 #include <yaml-cpp/yaml.h>
 
 #include "op3_ball_detector/ball_detector_config.h"
 
-#include "op3_ball_detector/DetectorParamsConfig.h"
 #include "op3_ball_detector/CircleSetStamped.h"
+#include "op3_ball_detector/DetectorParamsConfig.h"
 #include "op3_ball_detector/GetParameters.h"
 #include "op3_ball_detector/SetParameters.h"
 
-namespace robotis_op
-{
+namespace robotis_op {
 
-class BallDetector
-{
- public:
+class BallDetector {
+public:
   BallDetector();
   ~BallDetector();
 
-  //checks if a new image has been received
+  // checks if a new image has been received
   bool newImage();
 
-  //execute circle detection with the cureent image
+  // execute circle detection with the cureent image
   void process();
 
-  //publish the output image (input image + marked circles)
+  // publish the output image (input image + marked circles)
   void publishImage();
 
-  //publish the circle set data
+  // publish the circle set data
   void publishCircles();
 
- protected:
+protected:
   const static int NOT_FOUND_TH = 30;
 
-  //callbacks to image subscription
-  void imageCallback(const sensor_msgs::ImageConstPtr & msg);
+  // callbacks to image subscription
+  void imageCallback(const sensor_msgs::ImageConstPtr &msg);
 
-  //callbacks to camera info subscription
-  void cameraInfoCallback(const sensor_msgs::CameraInfo & msg);
+  // callbacks to camera info subscription
+  void cameraInfoCallback(const sensor_msgs::CameraInfo &msg);
 
-  void dynParamCallback(op3_ball_detector::DetectorParamsConfig &config, uint32_t level);
+  void dynParamCallback(op3_ball_detector::DetectorParamsConfig &config,
+                        uint32_t level);
   void enableCallback(const std_msgs::Bool::ConstPtr &msg);
 
   void paramCommandCallback(const std_msgs::String::ConstPtr &msg);
-  bool setParamCallback(op3_ball_detector::SetParameters::Request &req, op3_ball_detector::SetParameters::Response &res);
-  bool getParamCallback(op3_ball_detector::GetParameters::Request &req, op3_ball_detector::GetParameters::Response &res);
+  bool setParamCallback(op3_ball_detector::SetParameters::Request &req,
+                        op3_ball_detector::SetParameters::Response &res);
+  bool getParamCallback(op3_ball_detector::GetParameters::Request &req,
+                        op3_ball_detector::GetParameters::Response &res);
   void resetParameter();
   void publishParam();
 
   void printConfig();
   void saveConfig();
-  void setInputImage(const cv::Mat & inIm);
-  void setInputImage(const cv::Mat & inIm, cv::Mat &in_filter_img);
-  void getOutputImage(cv::Mat & outIm);
+  void setInputImage(const cv::Mat &inIm);
+  void setInputImage(const cv::Mat &inIm, cv::Mat &in_filter_img);
+  void getOutputImage(cv::Mat &outIm);
   void filterImage();
   void filterImage(const cv::Mat &in_filter_img, cv::Mat &out_filter_img);
   void makeFilterMask(const cv::Mat &source_img, cv::Mat &mask_img, int range);
   void makeFilterMaskFromBall(const cv::Mat &source_img, cv::Mat &mask_img);
-  void inRangeHsv(const cv::Mat &input_img, const HsvFilter &filter_value, cv::Mat &output_img);
-  void mophology(const cv::Mat &intput_img, cv::Mat &output_img, int ellipse_size);
+  void inRangeHsv(const cv::Mat &input_img, const HsvFilter &filter_value,
+                  cv::Mat &output_img);
+  void mophology(const cv::Mat &intput_img, cv::Mat &output_img,
+                 int ellipse_size);
   void houghDetection(const unsigned int imgEncoding);
   void houghDetection2(const cv::Mat &input_hough);
   void drawOutputImage();
 
-  //ros node handle
+  // ros node handle
   ros::NodeHandle nh_;
 
   ros::Subscriber enable_sub_;
 
-  //image publisher/subscriber
+  // image publisher/subscriber
   image_transport::ImageTransport it_;
   image_transport::Publisher image_pub_;
   cv_bridge::CvImage cv_img_pub_;
@@ -113,16 +116,16 @@ class BallDetector
   bool init_param_;
   int not_found_count_;
 
-  //circle set publisher
+  // circle set publisher
   op3_ball_detector::CircleSetStamped circles_msg_;
   ros::Publisher circles_pub_;
 
-  //camera info subscriber
+  // camera info subscriber
   sensor_msgs::CameraInfo camera_info_msg_;
   ros::Subscriber camera_info_sub_;
   ros::Publisher camera_info_pub_;
 
-  //dynamic reconfigure
+  // dynamic reconfigure
   DetectorConfig params_config_;
   std::string param_path_;
   bool has_path_;
@@ -134,14 +137,14 @@ class BallDetector
   ros::ServiceServer get_param_client_;
   ros::ServiceServer set_param_client_;
 
-  //flag indicating a new image has been received
+  // flag indicating a new image has been received
   bool new_image_flag_;
 
-  //image time stamp and frame id
+  // image time stamp and frame id
   ros::Time sub_time_;
   std::string image_frame_id_;
 
-  //img encoding id
+  // img encoding id
   unsigned int img_encoding_;
 
   /** \brief Set of detected circles
@@ -156,9 +159,11 @@ class BallDetector
   cv::Mat in_image_;
   cv::Mat out_image_;
 
-  dynamic_reconfigure::Server<op3_ball_detector::DetectorParamsConfig> param_server_;
-  dynamic_reconfigure::Server<op3_ball_detector::DetectorParamsConfig>::CallbackType callback_fnc_;
+  dynamic_reconfigure::Server<op3_ball_detector::DetectorParamsConfig>
+      param_server_;
+  dynamic_reconfigure::Server<
+      op3_ball_detector::DetectorParamsConfig>::CallbackType callback_fnc_;
 };
 
-}       // namespace robotis_op
-#endif  // _BALL_DETECTOR_H_
+} // namespace robotis_op
+#endif // _BALL_DETECTOR_H_

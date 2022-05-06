@@ -1,48 +1,45 @@
 /*******************************************************************************
-* Copyright 2017 ROBOTIS CO., LTD.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*******************************************************************************/
+ * Copyright 2017 ROBOTIS CO., LTD.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 
 /* Author: Kayman Jung */
 
 #ifndef BALL_FOLLOWER_H_
 #define BALL_FOLLOWER_H_
 
+#include <geometry_msgs/Point.h>
 #include <math.h>
 #include <numeric>
-#include <ros/ros.h>
 #include <ros/package.h>
-#include <std_msgs/String.h>
-#include <std_msgs/Int32.h>
+#include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
-#include <geometry_msgs/Point.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/String.h>
 #include <yaml-cpp/yaml.h>
 
-#include "robotis_controller_msgs/JointCtrlModule.h"
 #include "op3_ball_detector/CircleSetStamped.h"
-#include "op3_walking_module_msgs/WalkingParam.h"
 #include "op3_walking_module_msgs/GetWalkingParam.h"
+#include "op3_walking_module_msgs/WalkingParam.h"
+#include "robotis_controller_msgs/JointCtrlModule.h"
 
-namespace robotis_op
-{
+namespace robotis_op {
 
 // following the ball using walking
-class BallFollower
-{
- public:
-  enum
-  {
+class BallFollower {
+public:
+  enum {
     NotFound = 0,
     OutOfRange = 1,
     OnRight = 2,
@@ -57,22 +54,16 @@ class BallFollower
   void waitFollowing();
   void startFollowing();
   void stopFollowing();
-  void clearBallPosition()
-  {
-    approach_ball_position_ = NotFound;
+  void clearBallPosition() { approach_ball_position_ = NotFound; }
+
+  int getBallPosition() { return approach_ball_position_; }
+
+  bool isBallInRange() {
+    return (approach_ball_position_ == OnRight ||
+            approach_ball_position_ == OnLeft);
   }
 
-  int getBallPosition()
-  {
-    return approach_ball_position_;
-  }
-
-  bool isBallInRange()
-  {
-    return (approach_ball_position_ == OnRight || approach_ball_position_ == OnLeft);
-  }
-
- protected:
+protected:
   const bool DEBUG_PRINT;
   const double CAMERA_HEIGHT;
   const int NOT_FOUND_THRESHOLD;
@@ -92,15 +83,16 @@ class BallFollower
 
   void currentJointStatesCallback(const sensor_msgs::JointState::ConstPtr &msg);
   void setWalkingCommand(const std::string &command);
-  void setWalkingParam(double x_move, double y_move, double rotation_angle, bool balance = true);
+  void setWalkingParam(double x_move, double y_move, double rotation_angle,
+                       bool balance = true);
   bool getWalkingParam();
-  void calcFootstep(double target_distance, double target_angle, double delta_time,
-                    double& fb_move, double& rl_angle);
+  void calcFootstep(double target_distance, double target_angle,
+                    double delta_time, double &fb_move, double &rl_angle);
 
-  //ros node handle
+  // ros node handle
   ros::NodeHandle nh_;
 
-  //image publisher/subscriber
+  // image publisher/subscriber
   ros::Publisher module_control_pub_;
   ros::Publisher head_joint_pub_;
   ros::Publisher head_scan_pub_;
@@ -131,8 +123,7 @@ class BallFollower
 
   double curr_period_time_;
   double accum_period_time_;
-
 };
-}
+} // namespace robotis_op
 
 #endif /* BALL_FOLLOWER_H_ */
