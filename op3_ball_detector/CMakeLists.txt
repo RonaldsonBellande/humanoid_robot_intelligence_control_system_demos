@@ -1,13 +1,14 @@
 ################################################################################
 # Set minimum required version of cmake, project name and compile options
 ################################################################################
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(op3_ball_detector)
 
 ################################################################################
 # Find catkin packages and libraries for catkin and system dependencies
 ################################################################################
-find_package(catkin REQUIRED COMPONENTS
+find_package(
+  catkin REQUIRED COMPONENTS
   roscpp
   roslib
   std_msgs
@@ -27,18 +28,20 @@ find_package(OpenCV 3 REQUIRED)
 ## Insert your header file compatible specified path like '#include <yaml-cpp/yaml.h>'
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(YAML_CPP REQUIRED yaml-cpp)
-find_path(YAML_CPP_INCLUDE_DIR
+find_path(
+  YAML_CPP_INCLUDE_DIR
   NAMES yaml_cpp.h
   PATHS ${YAML_CPP_INCLUDE_DIRS}
 )
-find_library(YAML_CPP_LIBRARY
+find_library(
+  YAML_CPP_LIBRARY
   NAMES YAML_CPP
   PATHS ${YAML_CPP_LIBRARY_DIRS}
 )
 link_directories(${YAML_CPP_LIBRARY_DIRS})
 
 if(NOT ${YAML_CPP_VERSION} VERSION_LESS "0.5")
-add_definitions(-DHAVE_NEW_YAMLCPP)
+  add_definitions(-DHAVE_NEW_YAMLCPP)
 endif(NOT ${YAML_CPP_VERSION} VERSION_LESS "0.5")
 
 ################################################################################
@@ -63,15 +66,13 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   std_msgs
-  geometry_msgs 
+  geometry_msgs
 )
 
 ################################################################################
 # Declare ROS dynamic reconfigure parameters
 ################################################################################
-generate_dynamic_reconfigure_options(
-  cfg/DetectorParams.cfg
-)
+generate_dynamic_reconfigure_options(cfg/DetectorParams.cfg)
 
 ################################################################################
 # Declare catkin specific configuration to be passed to dependent projects
@@ -79,16 +80,16 @@ generate_dynamic_reconfigure_options(
 catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS
-    roscpp
-    roslib
-    std_msgs
-    sensor_msgs
-    geometry_msgs
-    dynamic_reconfigure
-    cv_bridge
-    image_transport
-    message_runtime
-  DEPENDS Boost OpenCV 
+  roscpp
+  roslib
+  std_msgs
+  sensor_msgs
+  geometry_msgs
+  dynamic_reconfigure
+  cv_bridge
+  image_transport
+  message_runtime
+  DEPENDS Boost OpenCV
 )
 
 ################################################################################
@@ -102,14 +103,16 @@ include_directories(
   ${YAML_CPP_INCLUDE_DIRS}
 )
 
-add_executable(ball_detector_node
+add_executable(
+  ball_detector_node
   src/ball_detector.cpp
   src/ball_detector_node.cpp
 )
 
 add_dependencies(ball_detector_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-target_link_libraries(ball_detector_node
+target_link_libraries(
+  ball_detector_node
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
   ${OpenCV_LIBRARIES}
@@ -119,16 +122,19 @@ target_link_libraries(ball_detector_node
 ################################################################################
 # Install
 ################################################################################
-install(TARGETS ball_detector_node
+install(
+  TARGETS ball_detector_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-install(DIRECTORY include/${PROJECT_NAME}/
+install(
+  DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 
-install(DIRECTORY config launch rviz 
-	DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+install(
+  DIRECTORY config launch rviz
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
 ################################################################################
