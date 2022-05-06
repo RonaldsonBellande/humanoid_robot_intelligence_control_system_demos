@@ -21,7 +21,7 @@ find_package(
 )
 
 find_package(Boost REQUIRED COMPONENTS thread)
-find_package(OpenCV 3 REQUIRED)
+find_package(OpenCV 4.2 REQUIRED)
 
 ## Resolve system dependency on yaml-cpp, which apparently does not
 ## provide a CMake find_package() module.
