@@ -1,8 +1,8 @@
-<?xml version="1.0" ?>
-<launch>        
+<?xml version="1.0"?>
+<launch>
   <!-- OP3 Manager -->
-  <include file="$(find op3_manager)/launch/op3_manager.launch" />	
-	
+  <include file="$(find op3_manager)/launch/op3_manager.launch" />
+
   <!-- UVC camera -->
   <node pkg="usb_cam" type="usb_cam_node" name="usb_cam_node" output="screen">
     <param name="video_device" type="string" value="/dev/video0" />

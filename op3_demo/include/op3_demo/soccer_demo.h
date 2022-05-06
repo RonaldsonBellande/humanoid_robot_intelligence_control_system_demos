@@ -1,56 +1,52 @@
 /*******************************************************************************
-* Copyright 2017 ROBOTIS CO., LTD.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*******************************************************************************/
+ * Copyright 2017 ROBOTIS CO., LTD.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 
 /* Author: Kayman Jung */
 
 #ifndef SOCCER_DEMO_H
 #define SOCCER_DEMO_H
 
-#include <ros/ros.h>
-#include <std_msgs/String.h>
-#include <sensor_msgs/Imu.h>
 #include <boost/thread.hpp>
 #include <eigen3/Eigen/Eigen>
+#include <ros/ros.h>
+#include <sensor_msgs/Imu.h>
+#include <std_msgs/String.h>
 #include <yaml-cpp/yaml.h>
 
 #include "op3_action_module_msgs/IsRunning.h"
-#include "robotis_controller_msgs/SyncWriteItem.h"
 #include "robotis_controller_msgs/JointCtrlModule.h"
 #include "robotis_controller_msgs/SetJointModule.h"
+#include "robotis_controller_msgs/SyncWriteItem.h"
 
-#include "op3_demo/op_demo.h"
-#include "op3_demo/ball_tracker.h"
 #include "op3_demo/ball_follower.h"
+#include "op3_demo/ball_tracker.h"
+#include "op3_demo/op_demo.h"
 #include "robotis_math/robotis_linear_algebra.h"
 
-namespace robotis_op
-{
+namespace robotis_op {
 
-class SoccerDemo : public OPDemo
-{
- public:
-  enum Stand_Status
-  {
+class SoccerDemo : public OPDemo {
+public:
+  enum Stand_Status {
     Stand = 0,
     Fallen_Forward = 1,
     Fallen_Behind = 2,
   };
 
-  enum Robot_Status
-  {
+  enum Robot_Status {
     Waited = 0,
     TrackingAndFollowing = 1,
     ReadyToKick = 2,
@@ -64,7 +60,7 @@ class SoccerDemo : public OPDemo
   void setDemoEnable();
   void setDemoDisable();
 
- protected:
+protected:
   const double FALL_FORWARD_LIMIT;
   const double FALL_BACK_LIMIT;
   const int SPIN_RATE;
@@ -74,17 +70,19 @@ class SoccerDemo : public OPDemo
   void callbackThread();
   void trackingThread();
 
-  void setBodyModuleToDemo(const std::string &body_module, bool with_head_control = true);
+  void setBodyModuleToDemo(const std::string &body_module,
+                           bool with_head_control = true);
   void setModuleToDemo(const std::string &module_name);
-  void callServiceSettingModule(const robotis_controller_msgs::JointCtrlModule &modules);
+  void callServiceSettingModule(
+      const robotis_controller_msgs::JointCtrlModule &modules);
   void parseJointNameFromYaml(const std::string &path);
   bool getJointNameFromID(const int &id, std::string &joint_name);
   bool getIDFromJointName(const std::string &joint_name, int &id);
   int getJointCount();
   bool isHeadJoint(const int &id);
-  void buttonHandlerCallback(const std_msgs::String::ConstPtr& msg);
-  void demoCommandCallback(const std_msgs::String::ConstPtr& msg);
-  void imuDataCallback(const sensor_msgs::Imu::ConstPtr& msg);
+  void buttonHandlerCallback(const std_msgs::String::ConstPtr &msg);
+  void demoCommandCallback(const std_msgs::String::ConstPtr &msg);
+  void imuDataCallback(const sensor_msgs::Imu::ConstPtr &msg);
 
   void startSoccerMode();
   void stopSoccerMode();
@@ -132,5 +130,5 @@ class SoccerDemo : public OPDemo
   double present_pitch_;
 };
 
-}  // namespace robotis_op
+} // namespace robotis_op
 #endif // SOCCER_DEMO_H

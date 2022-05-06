@@ -1,20 +1,34 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>robotis_op3_demo</name>
-  <version>0.1.0</version>
+  <version>0.3.0</version>
   <description>
     ROS packages for the robotis_op3_demo (meta package)
   </description>
   <license>Apache 2.0</license>
   <author email="kmjung@robotis.com">Kayman</author>
-  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>
+
   <url type="website">http://wiki.ros.org/robotis_op3_demo</url>
   <url type="emanual">http://emanual.robotis.com/docs/en/platform/op3/introduction/</url>
   <url type="repository">https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Demo</url>
   <url type="bugtracker">https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Demo/issues</url>
+
   <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>op3_ball_detector</build_depend>
+  <build_depend>op3_bringup</build_depend>
+  <build_depend>op3_demo</build_depend>
+
+  <build_export_depend>op3_ball_detector</build_export_depend>
+  <build_export_depend>op3_bringup</build_export_depend>
+  <build_export_depend>op3_demo</build_export_depend>
+
   <exec_depend>op3_ball_detector</exec_depend>
   <exec_depend>op3_bringup</exec_depend>
   <exec_depend>op3_demo</exec_depend>
-  <export><metapackage/></export>
+
+  <export>
+    <metapackage />
+  </export>
 </package>
