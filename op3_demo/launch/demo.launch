@@ -7,7 +7,7 @@
   <include file="$(find op3_ball_detector)/launch/ball_detector_from_usb_cam.launch" />
 
   <!-- face tracking -->
-  <include file="$(find op3_demo)/launch/face_detection_op3.launch" />
+  <!-- <include file="$(find op3_demo)/launch/face_detection_op3.launch" /> -->
 
   <!-- camera setting tool -->
   <include file="$(find op3_camera_setting_tool)/launch/op3_camera_setting_tool.launch" />
@@ -24,4 +24,5 @@
     <param name="p_gain" value="0.45" />
     <param name="d_gain" value="0.045" />
   </node>
+
 </launch>
