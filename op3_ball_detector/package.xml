@@ -3,7 +3,7 @@
   <name>op3_ball_detector</name>
   <version>0.1.0</version>
   <description>
-    This package implements a circle-like shape detector of the input image.
+    This package implements a circle-like shape detector of the input image
     It requires and input image and publish, at frame rate, a marked image
     and a stamped array of circle centers and radius.
   </description>
