@@ -1,0 +1,2 @@
+- git: {local-name: robotis_humanoid_robot_tools, uri: 'https://github.com/Robotics-Sensors/ROBOTIS-HUMANOID_ROBOT-Tools.git', version: noetic}
+- git: {local-name: humanoid_navigation, uri: 'https://github.com/Robotics-Sensors/humanoid_navigation.git', version: noetic}
