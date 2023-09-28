@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <!-- robotis humanoid_robot manager -->
+  <!-- humanoid_robot humanoid_robot manager -->
   <include file="$(find humanoid_robot_manager)/launch/humanoid_robot_manager.launch" />
 
   <!-- Camera and Ball detector -->
@@ -18,7 +18,7 @@
   <!-- web setting -->
   <include file="$(find humanoid_robot_web_setting_tool)/launch/web_setting_server.launch" />
 
-  <!-- robotis humanoid_robot demo -->
+  <!-- humanoid_robot humanoid_robot demo -->
   <node pkg="humanoid_robot_demo" type="op_demo_node" name="humanoid_robot_demo" output="screen">
     <param name="grass_demo" type="bool" value="False" />
     <param name="p_gain" value="0.45" />

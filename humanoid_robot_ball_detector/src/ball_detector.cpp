@@ -20,7 +20,7 @@
 
 #include "humanoid_robot_ball_detector/ball_detector.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 BallDetector::BallDetector()
     : nh_(ros::this_node::getName()), it_(this->nh_), enable_(true),
@@ -892,4 +892,4 @@ void BallDetector::drawOutputImage() {
              0); // circle outline in blue
 }
 
-} // namespace robotis_op
+} // namespace humanoid_robot_op

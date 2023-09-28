@@ -29,7 +29,7 @@
 #include <std_msgs/String.h>
 #include <yaml-cpp/yaml.h>
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 // head tracking for looking the ball
 class FaceTracker {
@@ -89,6 +89,6 @@ protected:
 
   int dismissed_count_;
 };
-} // namespace robotis_op
+} // namespace humanoid_robot_op
 
 #endif /* FACE_TRACKING_H_ */

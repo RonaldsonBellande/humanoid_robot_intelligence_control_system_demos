@@ -29,10 +29,10 @@
 
 #include "humanoid_robot_action_module_msgs/IsRunning.h"
 #include "humanoid_robot_demo/op_demo.h"
-#include "robotis_controller_msgs/JointCtrlModule.h"
-#include "robotis_controller_msgs/SetModule.h"
+#include "humanoid_robot_controller_msgs/JointCtrlModule.h"
+#include "humanoid_robot_controller_msgs/SetModule.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 class ActionDemo : public OPDemo {
 public:
@@ -109,6 +109,6 @@ protected:
   int play_status_;
 };
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */
 
 #endif /* ACTION_DEMO_H_ */

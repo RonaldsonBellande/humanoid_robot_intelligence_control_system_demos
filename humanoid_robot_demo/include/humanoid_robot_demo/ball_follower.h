@@ -32,9 +32,9 @@
 #include "humanoid_robot_ball_detector/CircleSetStamped.h"
 #include "humanoid_robot_walking_module_msgs/GetWalkingParam.h"
 #include "humanoid_robot_walking_module_msgs/WalkingParam.h"
-#include "robotis_controller_msgs/JointCtrlModule.h"
+#include "humanoid_robot_controller_msgs/JointCtrlModule.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 // following the ball using walking
 class BallFollower {
@@ -124,6 +124,6 @@ protected:
   double curr_period_time_;
   double accum_period_time_;
 };
-} // namespace robotis_op
+} // namespace humanoid_robot_op
 
 #endif /* BALL_FOLLOWER_H_ */

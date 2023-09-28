@@ -25,13 +25,13 @@
 #include <std_msgs/Int32MultiArray.h>
 #include <std_msgs/String.h>
 
-#include "robotis_controller_msgs/SetModule.h"
-#include "robotis_controller_msgs/SyncWriteItem.h"
+#include "humanoid_robot_controller_msgs/SetModule.h"
+#include "humanoid_robot_controller_msgs/SyncWriteItem.h"
 
 #include "humanoid_robot_demo/face_tracker.h"
 #include "humanoid_robot_demo/op_demo.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 class VisionDemo : public OPDemo {
 public:
@@ -78,6 +78,6 @@ protected:
   int tracking_status_;
 };
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */
 
 #endif /* VISION_DEMO_H_ */

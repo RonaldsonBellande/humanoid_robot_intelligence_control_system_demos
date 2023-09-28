@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "ball_detector_node");
 
   // create ros wrapper object
-  robotis_op::BallDetector detector;
+  humanoid_robot_op::BallDetector detector;
 
   // set node loop rate
   ros::Rate loop_rate(30);

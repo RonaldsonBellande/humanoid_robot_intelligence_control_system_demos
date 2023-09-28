@@ -18,22 +18,22 @@
 
 #include "humanoid_robot_demo/face_tracker.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 FaceTracker::FaceTracker()
     : nh_(ros::this_node::getName()), FOV_WIDTH(35.2 * M_PI / 180),
       FOV_HEIGHT(21.6 * M_PI / 180), NOT_FOUND_THRESHOLD(50),
       use_head_scan_(false), count_not_found_(0), on_tracking_(false) {
   head_joint_offset_pub_ = nh_.advertise<sensor_msgs::JointState>(
-      "/robotis/head_control/set_joint_states_offset", 0);
+      "/humanoid_robot/head_control/set_joint_states_offset", 0);
   head_joint_pub_ = nh_.advertise<sensor_msgs::JointState>(
-      "/robotis/head_control/set_joint_states", 0);
+      "/humanoid_robot/head_control/set_joint_states", 0);
   head_scan_pub_ =
-      nh_.advertise<std_msgs::String>("/robotis/head_control/scan_command", 0);
+      nh_.advertise<std_msgs::String>("/humanoid_robot/head_control/scan_command", 0);
 
   face_position_sub_ = nh_.subscribe("/face_position", 1,
                                      &FaceTracker::facePositionCallback, this);
-  // face_tracking_command_sub_ = nh_.subscribe("/robotis/demo_command", 1,
+  // face_tracking_command_sub_ = nh_.subscribe("/humanoid_robot/demo_command", 1,
   // &FaceTracker::faceTrackerCommandCallback, this);
 }
 
@@ -178,4 +178,4 @@ void FaceTracker::scanFace() {
   // ROS_INFO("Scan the ball");
 }
 
-} // namespace robotis_op
+} // namespace humanoid_robot_op

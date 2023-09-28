@@ -31,9 +31,9 @@
 #include "humanoid_robot_ball_detector/CircleSetStamped.h"
 #include "humanoid_robot_walking_module_msgs/GetWalkingParam.h"
 #include "humanoid_robot_walking_module_msgs/WalkingParam.h"
-#include "robotis_controller_msgs/JointCtrlModule.h"
+#include "humanoid_robot_controller_msgs/JointCtrlModule.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 // head tracking for looking the ball
 class BallTracker {
@@ -108,6 +108,6 @@ protected:
   ros::Time prev_time_;
   double p_gain_, d_gain_, i_gain_;
 };
-} // namespace robotis_op
+} // namespace humanoid_robot_op
 
 #endif /* BALL_TRACKING_H_ */

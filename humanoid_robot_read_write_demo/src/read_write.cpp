@@ -20,8 +20,8 @@
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/String.h>
 
-#include "robotis_controller_msgs/SetModule.h"
-#include "robotis_controller_msgs/SyncWriteItem.h"
+#include "humanoid_robot_controller_msgs/SetModule.h"
+#include "humanoid_robot_controller_msgs/SyncWriteItem.h"
 
 void buttonHandlerCallback(const std_msgs::String::ConstPtr &msg);
 void jointstatesCallback(const sensor_msgs::JointState::ConstPtr &msg);
@@ -62,24 +62,24 @@ int main(int argc, char **argv) {
 
   ros::NodeHandle nh(ros::this_node::getName());
 
-  init_pose_pub = nh.advertise<std_msgs::String>("/robotis/base/ini_pose", 0);
-  sync_write_pub = nh.advertise<robotis_controller_msgs::SyncWriteItem>(
-      "/robotis/sync_write_item", 0);
-  dxl_torque_pub = nh.advertise<std_msgs::String>("/robotis/dxl_torque", 0);
+  init_pose_pub = nh.advertise<std_msgs::String>("/humanoid_robot/base/ini_pose", 0);
+  sync_write_pub = nh.advertise<humanoid_robot_controller_msgs::SyncWriteItem>(
+      "/humanoid_robot/sync_write_item", 0);
+  dxl_torque_pub = nh.advertise<std_msgs::String>("/humanoid_robot/dxl_torque", 0);
   write_joint_pub =
-      nh.advertise<sensor_msgs::JointState>("/robotis/set_joint_states", 0);
+      nh.advertise<sensor_msgs::JointState>("/humanoid_robot/set_joint_states", 0);
   write_joint_pub2 = nh.advertise<sensor_msgs::JointState>(
-      "/robotis/direct_control/set_joint_states", 0);
+      "/humanoid_robot/direct_control/set_joint_states", 0);
 
   read_joint_sub =
-      nh.subscribe("/robotis/present_joint_states", 1, jointstatesCallback);
+      nh.subscribe("/humanoid_robot/present_joint_states", 1, jointstatesCallback);
   buttuon_sub =
-      nh.subscribe("/robotis/open_cr/button", 1, buttonHandlerCallback);
+      nh.subscribe("/humanoid_robot/open_cr/button", 1, buttonHandlerCallback);
 
   // service
   set_joint_module_client =
-      nh.serviceClient<robotis_controller_msgs::SetModule>(
-          "/robotis/set_present_ctrl_modules");
+      nh.serviceClient<humanoid_robot_controller_msgs::SetModule>(
+          "/humanoid_robot/set_present_ctrl_modules");
 
   ros::start();
 
@@ -116,7 +116,7 @@ int main(int argc, char **argv) {
 }
 
 void buttonHandlerCallback(const std_msgs::String::ConstPtr &msg) {
-  // starting demo using robotis_controller
+  // starting demo using humanoid_robot_controller
   if (msg->data == "mode") {
     control_module = Framework;
     ROS_INFO("Button : mode | Framework");
@@ -215,7 +215,7 @@ void goInitPose() {
 }
 
 void setLED(int led) {
-  robotis_controller_msgs::SyncWriteItem syncwrite_msg;
+  humanoid_robot_controller_msgs::SyncWriteItem syncwrite_msg;
   syncwrite_msg.item_name = "LED";
   syncwrite_msg.joint_name.push_back("open-cr");
   syncwrite_msg.value.push_back(led);
@@ -238,7 +238,7 @@ bool checkManagerRunning(std::string &manager_name) {
 }
 
 void setModule(const std::string &module_name) {
-  robotis_controller_msgs::SetModule set_module_srv;
+  humanoid_robot_controller_msgs::SetModule set_module_srv;
   set_module_srv.request.module_name = module_name;
 
   if (set_joint_module_client.call(set_module_srv) == false) {
@@ -257,7 +257,7 @@ void torqueOnAll() {
 }
 
 void torqueOff(const std::string &body_side) {
-  robotis_controller_msgs::SyncWriteItem syncwrite_msg;
+  humanoid_robot_controller_msgs::SyncWriteItem syncwrite_msg;
   int torque_value = 0;
   syncwrite_msg.item_name = "torque_enable";
 

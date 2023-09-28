@@ -6,26 +6,26 @@
     The humanoid_robot_read_write_demo package
   </description>
   <license>Apache 2.0</license>
-  <maintainer email="pyo@robotis.com">Ronaldson Bellande</maintainer>
+  <maintainer email="pyo@humanoid_robot.com">Ronaldson Bellande</maintainer>
 
   <buildtool_depend>catkin</buildtool_depend>
 
   <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_depend>sensor_msgs</build_depend>
-  <build_depend>robotis_controller_msgs</build_depend>
+  <build_depend>humanoid_robot_controller_msgs</build_depend>
   <build_depend>humanoid_robot_manager</build_depend>
 
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
   <build_export_depend>sensor_msgs</build_export_depend>
-  <build_export_depend>robotis_controller_msgs</build_export_depend>
+  <build_export_depend>humanoid_robot_controller_msgs</build_export_depend>
   <build_export_depend>humanoid_robot_manager</build_export_depend>
 
   <exec_depend>roscpp</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
-  <exec_depend>robotis_controller_msgs</exec_depend>
+  <exec_depend>humanoid_robot_controller_msgs</exec_depend>
   <exec_depend>humanoid_robot_manager</exec_depend>
 
 </package>

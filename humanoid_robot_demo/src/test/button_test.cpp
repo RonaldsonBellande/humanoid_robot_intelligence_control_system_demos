@@ -18,7 +18,7 @@
 
 #include "humanoid_robot_demo/button_test.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 ButtonTest::ButtonTest() : SPIN_RATE(30), led_count_(0), rgb_led_count_(0) {
   enable_ = false;
@@ -63,11 +63,11 @@ void ButtonTest::callbackThread() {
   ros::NodeHandle nh(ros::this_node::getName());
 
   // subscriber & publisher
-  rgb_led_pub_ = nh.advertise<robotis_controller_msgs::SyncWriteItem>(
-      "/robotis/sync_write_item", 0);
+  rgb_led_pub_ = nh.advertise<humanoid_robot_controller_msgs::SyncWriteItem>(
+      "/humanoid_robot/sync_write_item", 0);
   play_sound_pub_ = nh.advertise<std_msgs::String>("/play_sound_file", 0);
 
-  buttuon_sub_ = nh.subscribe("/robotis/open_cr/button", 1,
+  buttuon_sub_ = nh.subscribe("/humanoid_robot/open_cr/button", 1,
                               &ButtonTest::buttonHandlerCallback, this);
 
   while (nh.ok()) {
@@ -109,7 +109,7 @@ void ButtonTest::setRGBLED(int blue, int green, int red) {
   int led_full_unit = 0x1F;
   int led_value = (blue & led_full_unit) << 10 | (green & led_full_unit) << 5 |
                   (red & led_full_unit);
-  robotis_controller_msgs::SyncWriteItem syncwrite_msg;
+  humanoid_robot_controller_msgs::SyncWriteItem syncwrite_msg;
   syncwrite_msg.item_name = "LED_RGB";
   syncwrite_msg.joint_name.push_back("open-cr");
   syncwrite_msg.value.push_back(led_value);
@@ -118,7 +118,7 @@ void ButtonTest::setRGBLED(int blue, int green, int red) {
 }
 
 void ButtonTest::setLED(int led) {
-  robotis_controller_msgs::SyncWriteItem syncwrite_msg;
+  humanoid_robot_controller_msgs::SyncWriteItem syncwrite_msg;
   syncwrite_msg.item_name = "LED";
   syncwrite_msg.joint_name.push_back("open-cr");
   syncwrite_msg.value.push_back(led);
@@ -133,4 +133,4 @@ void ButtonTest::playSound(const std::string &path) {
   play_sound_pub_.publish(sound_msg);
 }
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */

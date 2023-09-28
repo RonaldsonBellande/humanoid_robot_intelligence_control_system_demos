@@ -18,7 +18,7 @@
 
 #include "humanoid_robot_demo/ball_tracker.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 BallTracker::BallTracker()
     : nh_(ros::this_node::getName()), FOV_WIDTH(35.2 * M_PI / 180),
@@ -36,11 +36,11 @@ BallTracker::BallTracker()
                                           << d_gain_);
 
   head_joint_offset_pub_ = nh_.advertise<sensor_msgs::JointState>(
-      "/robotis/head_control/set_joint_states_offset", 0);
+      "/humanoid_robot/head_control/set_joint_states_offset", 0);
   head_joint_pub_ = nh_.advertise<sensor_msgs::JointState>(
-      "/robotis/head_control/set_joint_states", 0);
+      "/humanoid_robot/head_control/set_joint_states", 0);
   head_scan_pub_ =
-      nh_.advertise<std_msgs::String>("/robotis/head_control/scan_command", 0);
+      nh_.advertise<std_msgs::String>("/humanoid_robot/head_control/scan_command", 0);
   //  error_pub_ =
   //  nh_.advertise<std_msgs::Float64MultiArray>("/ball_tracker/errors", 0);
 
@@ -264,4 +264,4 @@ void BallTracker::scanBall() {
   head_scan_pub_.publish(scan_msg);
 }
 
-} // namespace robotis_op
+} // namespace humanoid_robot_op

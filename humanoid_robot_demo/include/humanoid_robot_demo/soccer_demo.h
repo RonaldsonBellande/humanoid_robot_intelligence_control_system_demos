@@ -27,16 +27,16 @@
 #include <yaml-cpp/yaml.h>
 
 #include "humanoid_robot_action_module_msgs/IsRunning.h"
-#include "robotis_controller_msgs/JointCtrlModule.h"
-#include "robotis_controller_msgs/SetJointModule.h"
-#include "robotis_controller_msgs/SyncWriteItem.h"
+#include "humanoid_robot_controller_msgs/JointCtrlModule.h"
+#include "humanoid_robot_controller_msgs/SetJointModule.h"
+#include "humanoid_robot_controller_msgs/SyncWriteItem.h"
 
 #include "humanoid_robot_demo/ball_follower.h"
 #include "humanoid_robot_demo/ball_tracker.h"
 #include "humanoid_robot_demo/op_demo.h"
-#include "robotis_math/robotis_linear_algebra.h"
+#include "humanoid_robot_math/humanoid_robot_linear_algebra.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 class SoccerDemo : public OPDemo {
 public:
@@ -74,7 +74,7 @@ protected:
                            bool with_head_control = true);
   void setModuleToDemo(const std::string &module_name);
   void callServiceSettingModule(
-      const robotis_controller_msgs::JointCtrlModule &modules);
+      const humanoid_robot_controller_msgs::JointCtrlModule &modules);
   void parseJointNameFromYaml(const std::string &path);
   bool getJointNameFromID(const int &id, std::string &joint_name);
   bool getIDFromJointName(const std::string &joint_name, int &id);
@@ -130,5 +130,5 @@ protected:
   double present_pitch_;
 };
 
-} // namespace robotis_op
+} // namespace humanoid_robot_op
 #endif // SOCCER_DEMO_H

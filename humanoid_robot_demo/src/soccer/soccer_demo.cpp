@@ -18,7 +18,7 @@
 
 #include "humanoid_robot_demo/soccer_demo.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 SoccerDemo::SoccerDemo()
     : FALL_FORWARD_LIMIT(60), FALL_BACK_LIMIT(-60), SPIN_RATE(30),
@@ -166,25 +166,25 @@ void SoccerDemo::callbackThread() {
   ros::NodeHandle nh(ros::this_node::getName());
 
   // subscriber & publisher
-  module_control_pub_ = nh.advertise<robotis_controller_msgs::JointCtrlModule>(
-      "/robotis/set_joint_ctrl_modules", 0);
+  module_control_pub_ = nh.advertise<humanoid_robot_controller_msgs::JointCtrlModule>(
+      "/humanoid_robot/set_joint_ctrl_modules", 0);
   motion_index_pub_ =
-      nh.advertise<std_msgs::Int32>("/robotis/action/page_num", 0);
-  rgb_led_pub_ = nh.advertise<robotis_controller_msgs::SyncWriteItem>(
-      "/robotis/sync_write_item", 0);
+      nh.advertise<std_msgs::Int32>("/humanoid_robot/action/page_num", 0);
+  rgb_led_pub_ = nh.advertise<humanoid_robot_controller_msgs::SyncWriteItem>(
+      "/humanoid_robot/sync_write_item", 0);
 
-  buttuon_sub_ = nh.subscribe("/robotis/open_cr/button", 1,
+  buttuon_sub_ = nh.subscribe("/humanoid_robot/open_cr/button", 1,
                               &SoccerDemo::buttonHandlerCallback, this);
-  demo_command_sub_ = nh.subscribe("/robotis/demo_command", 1,
+  demo_command_sub_ = nh.subscribe("/humanoid_robot/demo_command", 1,
                                    &SoccerDemo::demoCommandCallback, this);
-  imu_data_sub_ = nh.subscribe("/robotis/open_cr/imu", 1,
+  imu_data_sub_ = nh.subscribe("/humanoid_robot/open_cr/imu", 1,
                                &SoccerDemo::imuDataCallback, this);
 
   is_running_client_ = nh.serviceClient<humanoid_robot_action_module_msgs::IsRunning>(
-      "/robotis/action/is_running");
+      "/humanoid_robot/action/is_running");
   set_joint_module_client_ =
-      nh.serviceClient<robotis_controller_msgs::SetJointModule>(
-          "/robotis/set_present_joint_ctrl_modules");
+      nh.serviceClient<humanoid_robot_controller_msgs::SetJointModule>(
+          "/humanoid_robot/set_present_joint_ctrl_modules");
 
   test_pub_ = nh.advertise<std_msgs::String>("/debug_text", 0);
 
@@ -237,7 +237,7 @@ void SoccerDemo::trackingThread() {
 
 void SoccerDemo::setBodyModuleToDemo(const std::string &body_module,
                                      bool with_head_control) {
-  robotis_controller_msgs::JointCtrlModule control_msg;
+  humanoid_robot_controller_msgs::JointCtrlModule control_msg;
 
   std::string head_module = "head_control_module";
   std::map<int, std::string>::iterator joint_iter;
@@ -269,7 +269,7 @@ void SoccerDemo::setModuleToDemo(const std::string &module_name) {
   if (enable_ == false)
     return;
 
-  robotis_controller_msgs::JointCtrlModule control_msg;
+  humanoid_robot_controller_msgs::JointCtrlModule control_msg;
   std::map<int, std::string>::iterator joint_iter;
 
   for (joint_iter = id_joint_table_.begin();
@@ -287,8 +287,8 @@ void SoccerDemo::setModuleToDemo(const std::string &module_name) {
 }
 
 void SoccerDemo::callServiceSettingModule(
-    const robotis_controller_msgs::JointCtrlModule &modules) {
-  robotis_controller_msgs::SetJointModule set_joint_srv;
+    const humanoid_robot_controller_msgs::JointCtrlModule &modules) {
+  humanoid_robot_controller_msgs::SetJointModule set_joint_srv;
   set_joint_srv.request.joint_name = modules.joint_name;
   set_joint_srv.request.module_name = modules.module_name;
 
@@ -400,7 +400,7 @@ void SoccerDemo::imuDataCallback(const sensor_msgs::Imu::ConstPtr &msg) {
   Eigen::Quaterniond orientation(msg->orientation.w, msg->orientation.x,
                                  msg->orientation.y, msg->orientation.z);
   Eigen::MatrixXd rpy_orientation =
-      robotis_framework::convertQuaternionToRPY(orientation);
+      humanoid_robot_framework::convertQuaternionToRPY(orientation);
   rpy_orientation *= (180 / M_PI);
 
   ROS_INFO_COND(DEBUG_PRINT, "Roll : %3.2f, Pitch : %2.2f",
@@ -453,12 +453,12 @@ void SoccerDemo::handleKick(int ball_position) {
 
   // kick motion
   switch (ball_position) {
-  case robotis_op::BallFollower::OnRight:
+  case humanoid_robot_op::BallFollower::OnRight:
     std::cout << "Kick Motion [R]: " << ball_position << std::endl;
     playMotion(is_grass_ ? RightKick + ForGrass : RightKick);
     break;
 
-  case robotis_op::BallFollower::OnLeft:
+  case humanoid_robot_op::BallFollower::OnLeft:
     std::cout << "Kick Motion [L]: " << ball_position << std::endl;
     playMotion(is_grass_ ? LeftKick + ForGrass : LeftKick);
     break;
@@ -504,13 +504,13 @@ void SoccerDemo::handleKick() {
   }
 
   switch (ball_position) {
-  case robotis_op::BallFollower::OnRight:
+  case humanoid_robot_op::BallFollower::OnRight:
     std::cout << "Kick Motion [R]: " << ball_position << std::endl;
     sendDebugTopic("Kick the ball using Right foot");
     playMotion(is_grass_ ? RightKick + ForGrass : RightKick);
     break;
 
-  case robotis_op::BallFollower::OnLeft:
+  case humanoid_robot_op::BallFollower::OnLeft:
     std::cout << "Kick Motion [L]: " << ball_position << std::endl;
     sendDebugTopic("Kick the ball using Left foot");
     playMotion(is_grass_ ? LeftKick + ForGrass : LeftKick);
@@ -583,7 +583,7 @@ void SoccerDemo::setRGBLED(int blue, int green, int red) {
   int led_full_unit = 0x1F;
   int led_value = (blue & led_full_unit) << 10 | (green & led_full_unit) << 5 |
                   (red & led_full_unit);
-  robotis_controller_msgs::SyncWriteItem syncwrite_msg;
+  humanoid_robot_controller_msgs::SyncWriteItem syncwrite_msg;
   syncwrite_msg.item_name = "LED_RGB";
   syncwrite_msg.joint_name.push_back("open-cr");
   syncwrite_msg.value.push_back(led_value);
@@ -614,4 +614,4 @@ void SoccerDemo::sendDebugTopic(const std::string &msgs) {
   test_pub_.publish(debug_msg);
 }
 
-} // namespace robotis_op
+} // namespace humanoid_robot_op

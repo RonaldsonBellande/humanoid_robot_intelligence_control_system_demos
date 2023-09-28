@@ -18,7 +18,7 @@
 
 #include "humanoid_robot_demo/action_demo.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 ActionDemo::ActionDemo()
     : SPIN_RATE(30), DEBUG_PRINT(false), play_index_(0),
@@ -35,7 +35,7 @@ ActionDemo::ActionDemo()
   play_list_name_ =
       nh.param<std::string>("action_script_play_list", default_play_list);
 
-  demo_command_sub_ = nh.subscribe("/robotis/demo_command", 1,
+  demo_command_sub_ = nh.subscribe("/humanoid_robot/demo_command", 1,
                                    &ActionDemo::demoCommandCallback, this);
 
   parseActionScript(script_path_);
@@ -150,19 +150,19 @@ void ActionDemo::callbackThread() {
 
   // subscriber & publisher
   module_control_pub_ =
-      nh.advertise<std_msgs::String>("/robotis/enable_ctrl_module", 0);
+      nh.advertise<std_msgs::String>("/humanoid_robot/enable_ctrl_module", 0);
   motion_index_pub_ =
-      nh.advertise<std_msgs::Int32>("/robotis/action/page_num", 0);
+      nh.advertise<std_msgs::Int32>("/humanoid_robot/action/page_num", 0);
   play_sound_pub_ = nh.advertise<std_msgs::String>("/play_sound_file", 0);
 
-  buttuon_sub_ = nh.subscribe("/robotis/open_cr/button", 1,
+  buttuon_sub_ = nh.subscribe("/humanoid_robot/open_cr/button", 1,
                               &ActionDemo::buttonHandlerCallback, this);
 
   is_running_client_ = nh.serviceClient<humanoid_robot_action_module_msgs::IsRunning>(
-      "/robotis/action/is_running");
+      "/humanoid_robot/action/is_running");
   set_joint_module_client_ =
-      nh.serviceClient<robotis_controller_msgs::SetModule>(
-          "/robotis/set_present_ctrl_modules");
+      nh.serviceClient<humanoid_robot_controller_msgs::SetModule>(
+          "/humanoid_robot/set_present_ctrl_modules");
 
   while (nh.ok()) {
     ros::spinOnce();
@@ -320,7 +320,7 @@ void ActionDemo::setModuleToDemo(const std::string &module_name) {
 }
 
 void ActionDemo::callServiceSettingModule(const std::string &module_name) {
-  robotis_controller_msgs::SetModule set_module_srv;
+  humanoid_robot_controller_msgs::SetModule set_module_srv;
   set_module_srv.request.module_name = module_name;
 
   if (set_joint_module_client_.call(set_module_srv) == false) {
@@ -342,4 +342,4 @@ void ActionDemo::demoCommandCallback(const std_msgs::String::ConstPtr &msg) {
   }
 }
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */

@@ -14,11 +14,11 @@ find_package(
   std_msgs
   sensor_msgs
   geometry_msgs
-  robotis_controller_msgs
+  humanoid_robot_controller_msgs
   humanoid_robot_walking_module_msgs
   humanoid_robot_action_module_msgs
   cmake_modules
-  robotis_math
+  humanoid_robot_math
   humanoid_robot_ball_detector
 )
 
@@ -69,11 +69,11 @@ catkin_package(
   std_msgs
   sensor_msgs
   geometry_msgs
-  robotis_controller_msgs
+  humanoid_robot_controller_msgs
   humanoid_robot_walking_module_msgs
   humanoid_robot_action_module_msgs
   cmake_modules
-  robotis_math
+  humanoid_robot_math
   humanoid_robot_ball_detector
   DEPENDS Boost EIGEN3
 )

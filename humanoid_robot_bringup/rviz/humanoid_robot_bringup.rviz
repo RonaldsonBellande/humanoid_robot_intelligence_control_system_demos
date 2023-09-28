@@ -287,7 +287,7 @@ Visualization Manager:
       Enabled: true
       History Length: 1
       Name: Imu
-      Topic: /robotis/open_cr/imu
+      Topic: /humanoid_robot/open_cr/imu
       Unreliable: false
       Value: true
   Enabled: true

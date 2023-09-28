@@ -25,9 +25,9 @@
 #include <std_msgs/String.h>
 
 #include "humanoid_robot_demo/op_demo.h"
-#include "robotis_controller_msgs/SyncWriteItem.h"
+#include "humanoid_robot_controller_msgs/SyncWriteItem.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 class ButtonTest : public OPDemo {
 public:
@@ -61,6 +61,6 @@ protected:
   int rgb_led_count_;
 };
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */
 
 #endif /* BUTTON_TEST_H_ */

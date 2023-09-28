@@ -18,7 +18,7 @@
 
 #include "humanoid_robot_demo/vision_demo.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 VisionDemo::VisionDemo()
     : SPIN_RATE(30), TIME_TO_INIT(10), tracking_status_(FaceTracker::Waiting) {
@@ -121,22 +121,22 @@ void VisionDemo::callbackThread() {
 
   // subscriber & publisher
   module_control_pub_ =
-      nh.advertise<std_msgs::String>("/robotis/enable_ctrl_module", 0);
+      nh.advertise<std_msgs::String>("/humanoid_robot/enable_ctrl_module", 0);
   motion_index_pub_ =
-      nh.advertise<std_msgs::Int32>("/robotis/action/page_num", 0);
-  rgb_led_pub_ = nh.advertise<robotis_controller_msgs::SyncWriteItem>(
-      "/robotis/sync_write_item", 0);
+      nh.advertise<std_msgs::Int32>("/humanoid_robot/action/page_num", 0);
+  rgb_led_pub_ = nh.advertise<humanoid_robot_controller_msgs::SyncWriteItem>(
+      "/humanoid_robot/sync_write_item", 0);
   face_tracking_command_pub_ =
       nh.advertise<std_msgs::Bool>("/face_tracking/command", 0);
 
-  buttuon_sub_ = nh.subscribe("/robotis/open_cr/button", 1,
+  buttuon_sub_ = nh.subscribe("/humanoid_robot/open_cr/button", 1,
                               &VisionDemo::buttonHandlerCallback, this);
   faceCoord_sub_ =
       nh.subscribe("/faceCoord", 1, &VisionDemo::facePositionCallback, this);
 
   set_joint_module_client_ =
-      nh.serviceClient<robotis_controller_msgs::SetModule>(
-          "/robotis/set_present_ctrl_modules");
+      nh.serviceClient<humanoid_robot_controller_msgs::SetModule>(
+          "/humanoid_robot/set_present_ctrl_modules");
 
   while (nh.ok()) {
     ros::spinOnce();
@@ -171,7 +171,7 @@ void VisionDemo::setModuleToDemo(const std::string &module_name) {
 }
 
 void VisionDemo::callServiceSettingModule(const std::string &module_name) {
-  robotis_controller_msgs::SetModule set_module_srv;
+  humanoid_robot_controller_msgs::SetModule set_module_srv;
   set_module_srv.request.module_name = module_name;
 
   if (set_joint_module_client_.call(set_module_srv) == false) {
@@ -216,7 +216,7 @@ void VisionDemo::setRGBLED(int blue, int green, int red) {
   int led_full_unit = 0x1F;
   int led_value = (blue & led_full_unit) << 10 | (green & led_full_unit) << 5 |
                   (red & led_full_unit);
-  robotis_controller_msgs::SyncWriteItem syncwrite_msg;
+  humanoid_robot_controller_msgs::SyncWriteItem syncwrite_msg;
   syncwrite_msg.item_name = "LED_RGB";
   syncwrite_msg.joint_name.push_back("open-cr");
   syncwrite_msg.value.push_back(led_value);
@@ -224,4 +224,4 @@ void VisionDemo::setRGBLED(int blue, int green, int red) {
   rgb_led_pub_.publish(syncwrite_msg);
 }
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */

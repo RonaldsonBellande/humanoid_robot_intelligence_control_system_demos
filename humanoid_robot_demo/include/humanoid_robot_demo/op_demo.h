@@ -19,7 +19,7 @@
 #ifndef OP_DEMO_H_
 #define OP_DEMO_H_
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 class OPDemo {
 public:
@@ -44,6 +44,6 @@ protected:
   bool enable_;
 };
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */
 
 #endif /* OP_DEMO_H_ */

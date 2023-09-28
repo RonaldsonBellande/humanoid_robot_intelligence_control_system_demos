@@ -9,7 +9,7 @@ project(humanoid_robot_read_write_demo)
 ################################################################################
 find_package(
   catkin REQUIRED COMPONENTS
-  robotis_controller_msgs
+  humanoid_robot_controller_msgs
   roscpp
   sensor_msgs
   std_msgs
@@ -34,7 +34,7 @@ catkin_package(
   INCLUDE_DIRS
   CATKIN_DEPENDS
   roscpp
-  robotis_controller_msgs
+  humanoid_robot_controller_msgs
   roscpp
   sensor_msgs
   std_msgs

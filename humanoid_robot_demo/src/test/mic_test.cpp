@@ -18,7 +18,7 @@
 
 #include "humanoid_robot_demo/mic_test.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 MicTest::MicTest()
     : SPIN_RATE(30), is_wait_(false), wait_time_(-1), test_status_(Ready),
@@ -117,7 +117,7 @@ void MicTest::callbackThread() {
   ros::NodeHandle nh(ros::this_node::getName());
 
   // subscriber & publisher
-  buttuon_sub_ = nh.subscribe("/robotis/open_cr/button", 1,
+  buttuon_sub_ = nh.subscribe("/humanoid_robot/open_cr/button", 1,
                               &MicTest::buttonHandlerCallback, this);
   play_sound_pub_ = nh.advertise<std_msgs::String>("/play_sound_file", 0);
 
@@ -234,4 +234,4 @@ void MicTest::startTimer(double wait_time) {
 
 void MicTest::finishTimer() { wait_time_ = -1; }
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */

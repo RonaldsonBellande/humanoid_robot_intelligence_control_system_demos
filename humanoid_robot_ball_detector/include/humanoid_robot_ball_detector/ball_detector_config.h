@@ -19,7 +19,7 @@
 #ifndef _DETECTOR_CONFIG_H_
 #define _DETECTOR_CONFIG_H_
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 // constants
 const int GAUSSIAN_BLUR_SIZE_DEFAULT = 7;
@@ -86,5 +86,5 @@ public:
   ~DetectorConfig() {}
 };
 
-} // namespace robotis_op
+} // namespace humanoid_robot_op
 #endif // _DETECTOR_CONFIG_H_

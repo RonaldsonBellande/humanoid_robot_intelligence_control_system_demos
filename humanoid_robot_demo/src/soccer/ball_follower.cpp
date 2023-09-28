@@ -18,7 +18,7 @@
 
 #include "humanoid_robot_demo/ball_follower.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 BallFollower::BallFollower()
     : nh_(ros::this_node::getName()), FOV_WIDTH(35.2 * M_PI / 180),
@@ -34,16 +34,16 @@ BallFollower::BallFollower()
       current_x_move_(0.005), current_r_angle_(0), curr_period_time_(0.6),
       accum_period_time_(0.0), DEBUG_PRINT(false) {
   current_joint_states_sub_ =
-      nh_.subscribe("/robotis/goal_joint_states", 10,
+      nh_.subscribe("/humanoid_robot/goal_joint_states", 10,
                     &BallFollower::currentJointStatesCallback, this);
 
   set_walking_command_pub_ =
-      nh_.advertise<std_msgs::String>("/robotis/walking/command", 0);
+      nh_.advertise<std_msgs::String>("/humanoid_robot/walking/command", 0);
   set_walking_param_pub_ = nh_.advertise<humanoid_robot_walking_module_msgs::WalkingParam>(
-      "/robotis/walking/set_params", 0);
+      "/humanoid_robot/walking/set_params", 0);
   get_walking_param_client_ =
       nh_.serviceClient<humanoid_robot_walking_module_msgs::GetWalkingParam>(
-          "/robotis/walking/get_params");
+          "/humanoid_robot/walking/get_params");
 
   prev_time_ = ros::Time::now();
 }
@@ -321,4 +321,4 @@ bool BallFollower::getWalkingParam() {
   }
 }
 
-} // namespace robotis_op
+} // namespace humanoid_robot_op

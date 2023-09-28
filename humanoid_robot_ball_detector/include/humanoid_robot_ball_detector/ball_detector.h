@@ -43,7 +43,7 @@
 #include "humanoid_robot_ball_detector/GetParameters.h"
 #include "humanoid_robot_ball_detector/SetParameters.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 class BallDetector {
 public:
@@ -165,5 +165,5 @@ protected:
       humanoid_robot_ball_detector::DetectorParamsConfig>::CallbackType callback_fnc_;
 };
 
-} // namespace robotis_op
+} // namespace humanoid_robot_op
 #endif // _BALL_DETECTOR_H_

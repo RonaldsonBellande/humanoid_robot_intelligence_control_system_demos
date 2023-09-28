@@ -26,9 +26,9 @@
 #include <std_msgs/String.h>
 
 #include "humanoid_robot_demo/op_demo.h"
-#include "robotis_controller_msgs/SyncWriteItem.h"
+#include "humanoid_robot_controller_msgs/SyncWriteItem.h"
 
-namespace robotis_op {
+namespace humanoid_robot_op {
 
 class MicTest : public OPDemo {
 public:
@@ -81,6 +81,6 @@ protected:
   int test_status_;
 };
 
-} /* namespace robotis_op */
+} /* namespace humanoid_robot_op */
 
 #endif /* MIC_TEST_H_ */
