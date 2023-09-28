@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>humanoid_robot_demo</name>
+  <version>0.3.0</version>
+  <description>
+    HUMANOID_ROBOT default demo
+    It includes three demontrations(soccer demo, vision demo, action script demo)
+  </description>
+  <license>Apache 2.0</license>
+  <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>roslib</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>humanoid_robot_controller_msgs</build_depend>
+  <build_depend>humanoid_robot_walking_module_msgs</build_depend>
+  <build_depend>humanoid_robot_action_module_msgs</build_depend>
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>humanoid_robot_math</build_depend>
+  <build_depend>humanoid_robot_ball_detector</build_depend>
+  <build_depend>boost</build_depend>
+  <build_depend>eigen</build_depend>
+  <build_depend>yaml-cpp</build_depend>
+  <build_depend>humanoid_robot_manager</build_depend>
+  <build_depend>humanoid_robot_camera_setting_tool</build_depend>
+  <build_depend>humanoid_robot_web_setting_tool</build_depend>
+  <build_depend>ros_madplay_player</build_depend>
+  <build_depend>face_detection</build_depend>
+
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>roslib</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>sensor_msgs</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>humanoid_robot_controller_msgs</build_export_depend>
+  <build_export_depend>humanoid_robot_walking_module_msgs</build_export_depend>
+  <build_export_depend>humanoid_robot_action_module_msgs</build_export_depend>
+  <build_export_depend>cmake_modules</build_export_depend>
+  <build_export_depend>humanoid_robot_math</build_export_depend>
+  <build_export_depend>humanoid_robot_ball_detector</build_export_depend>
+  <build_export_depend>boost</build_export_depend>
+  <build_export_depend>eigen</build_export_depend>
+  <build_export_depend>yaml-cpp</build_export_depend>
+  <build_export_depend>humanoid_robot_manager</build_export_depend>
+  <build_export_depend>humanoid_robot_camera_setting_tool</build_export_depend>
+  <build_export_depend>humanoid_robot_web_setting_tool</build_export_depend>
+  <build_export_depend>ros_madplay_player</build_export_depend>
+  <build_export_depend>face_detection</build_export_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>roslib</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>humanoid_robot_controller_msgs</exec_depend>
+  <exec_depend>humanoid_robot_walking_module_msgs</exec_depend>
+  <exec_depend>humanoid_robot_action_module_msgs</exec_depend>
+  <exec_depend>cmake_modules</exec_depend>
+  <exec_depend>humanoid_robot_math</exec_depend>
+  <exec_depend>humanoid_robot_ball_detector</exec_depend>
+  <exec_depend>boost</exec_depend>
+  <exec_depend>eigen</exec_depend>
+  <exec_depend>yaml-cpp</exec_depend>
+  <exec_depend>humanoid_robot_manager</exec_depend>
+  <exec_depend>humanoid_robot_camera_setting_tool</exec_depend>
+  <exec_depend>humanoid_robot_web_setting_tool</exec_depend>
+  <exec_depend>ros_madplay_player</exec_depend>
+  <exec_depend>face_detection</exec_depend>
+
+</package>

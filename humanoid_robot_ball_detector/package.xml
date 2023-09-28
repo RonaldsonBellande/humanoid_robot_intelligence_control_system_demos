@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>humanoid_robot_ball_detector</name>
+  <version>0.1.0</version>
+  <description>
+    This package implements a circle-like shape detector of the input image
+    It requires and input image and publish, at frame rate, a marked image
+    and a stamped array of circle centers and radius.
+  </description>
+  <license>Apache 2.0</license>
+  <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>roslib</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>boost</build_depend>
+  <build_depend>opencv3</build_depend>
+  <build_depend>yaml-cpp</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>message_runtime</build_depend>
+  <build_depend>message_runtime</build_depend>
+  <build_depend>usb_cam</build_depend>
+  <build_depend>uvc_camera</build_depend>
+
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>roslib</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>sensor_msgs</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>dynamic_reconfigure</build_export_depend>
+  <build_export_depend>cv_bridge</build_export_depend>
+  <build_export_depend>image_transport</build_export_depend>
+  <build_export_depend>boost</build_export_depend>
+  <build_export_depend>opencv3</build_export_depend>
+  <build_export_depend>yaml-cpp</build_export_depend>
+  <build_export_depend>message_generation</build_export_depend>
+  <build_export_depend>message_runtime</build_export_depend>
+  <build_export_depend>message_runtime</build_export_depend>
+  <build_export_depend>usb_cam</build_export_depend>
+  <build_export_depend>uvc_camera</build_export_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>roslib</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>dynamic_reconfigure</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>image_transport</exec_depend>
+  <exec_depend>boost</exec_depend>
+  <exec_depend>opencv3</exec_depend>
+  <exec_depend>yaml-cpp</exec_depend>
+  <exec_depend>message_generation</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>usb_cam</exec_depend>
+  <exec_depend>uvc_camera</exec_depend>
+
+</package>
