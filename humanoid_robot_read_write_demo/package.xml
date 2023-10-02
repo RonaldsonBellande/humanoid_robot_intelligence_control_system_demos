@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<package format="2">
+<package format="3">
   <name>humanoid_robot_read_write_demo</name>
   <version>0.3.0</version>
   <description>
     The humanoid_robot_read_write_demo package
   </description>
   <license>Apache 2.0</license>
-  <maintainer email="pyo@humanoid_robot.com">Ronaldson Bellande</maintainer>
+  <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>
 
   <buildtool_depend>catkin</buildtool_depend>
 
