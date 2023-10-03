@@ -13,25 +13,52 @@
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
 
 
-  <build_depend>humanoid_robot_manager</build_depend>
-  <build_depend>humanoid_robot_description</build_depend>
-  <build_depend>usb_cam</build_depend>
-  <build_depend>joint_state_publisher</build_depend>
-  <build_depend>robot_state_publisher</build_depend>
-  <build_depend>rviz</build_depend>
+  <condition if="$ROS_VERSION == 1">
+    <build_depend>humanoid_robot_manager</build_depend>
+    <build_depend>humanoid_robot_description</build_depend>
+    <build_depend>usb_cam</build_depend>
+    <build_depend>joint_state_publisher</build_depend>
+    <build_depend>robot_state_publisher</build_depend>
+    <build_depend>rviz</build_depend>
 
-  <build_export_depend>humanoid_robot_manager</build_export_depend>
-  <build_export_depend>humanoid_robot_description</build_export_depend>
-  <build_export_depend>usb_cam</build_export_depend>
-  <build_export_depend>joint_state_publisher</build_export_depend>
-  <build_export_depend>robot_state_publisher</build_export_depend>
-  <build_export_depend>rviz</build_export_depend>
+    <build_export_depend>humanoid_robot_manager</build_export_depend>
+    <build_export_depend>humanoid_robot_description</build_export_depend>
+    <build_export_depend>usb_cam</build_export_depend>
+    <build_export_depend>joint_state_publisher</build_export_depend>
+    <build_export_depend>robot_state_publisher</build_export_depend>
+    <build_export_depend>rviz</build_export_depend>
 
-  <exec_depend>humanoid_robot_manager</exec_depend>
-  <exec_depend>humanoid_robot_description</exec_depend>
-  <exec_depend>usb_cam</exec_depend>
-  <exec_depend>joint_state_publisher</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>rviz</exec_depend>
+    <exec_depend>humanoid_robot_manager</exec_depend>
+    <exec_depend>humanoid_robot_description</exec_depend>
+    <exec_depend>usb_cam</exec_depend>
+    <exec_depend>joint_state_publisher</exec_depend>
+    <exec_depend>robot_state_publisher</exec_depend>
+    <exec_depend>rviz</exec_depend>
+  </condition>
+
+
+  <condition if="$ROS_VERSION == 2">
+    <build_depend>humanoid_robot_manager</build_depend>
+    <build_depend>humanoid_robot_description</build_depend>
+    <build_depend>usb_cam</build_depend>
+    <build_depend>joint_state_publisher</build_depend>
+    <build_depend>robot_state_publisher</build_depend>
+    <build_depend>rviz</build_depend>
+
+    <build_export_depend>humanoid_robot_manager</build_export_depend>
+    <build_export_depend>humanoid_robot_description</build_export_depend>
+    <build_export_depend>usb_cam</build_export_depend>
+    <build_export_depend>joint_state_publisher</build_export_depend>
+    <build_export_depend>robot_state_publisher</build_export_depend>
+    <build_export_depend>rviz</build_export_depend>
+
+    <exec_depend>humanoid_robot_manager</exec_depend>
+    <exec_depend>humanoid_robot_description</exec_depend>
+    <exec_depend>usb_cam</exec_depend>
+    <exec_depend>joint_state_publisher</exec_depend>
+    <exec_depend>robot_state_publisher</exec_depend>
+    <exec_depend>rviz</exec_depend>
+  </condition>
+
 
 </package>
