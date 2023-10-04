@@ -1,6 +1,13 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Changelog for package humanoid_robot_demo
+Changelog for package humanoid_robot_read_write_demo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+0.3.2 (2023-10-03)
+------------------
+* Make it compatible for ROS1/ROS2
+* Fix bugs
+* Update package.xml and CMakeList.txt for to the latest versions
+* Contributors & Maintainer: Ronaldson Bellande
 
 0.3.1 (2023-09-27)
 ------------------
