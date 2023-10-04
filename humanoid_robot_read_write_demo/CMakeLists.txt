@@ -1,48 +1,35 @@
-################################################################################
-# Set minimum required version of cmake, project name and compile options
-################################################################################
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.8)
 project(humanoid_robot_read_write_demo)
 
-################################################################################
-# Find catkin packages and libraries for catkin and system dependencies
-################################################################################
-find_package(
-  catkin REQUIRED COMPONENTS
-  humanoid_robot_controller_msgs
-  roscpp
-  sensor_msgs
-  std_msgs
-)
 
-################################################################################
-# Setup for python modules and scripts
-################################################################################
+if($ENV{ROS_VERSION} EQUAL 1)
+  find_package(
+    catkin REQUIRED COMPONENTS
+    humanoid_robot_controller_msgs
+    roscpp
+    sensor_msgs
+    std_msgs
+  )
+else()
+  find_package(ament_cmake REQUIRED)
+endif()
 
-################################################################################
-# Declare ROS messages, services and actions
-################################################################################
 
-################################################################################
-# Declare ROS dynamic reconfigure parameters
-################################################################################
+if($ENV{ROS_VERSION} EQUAL 1)
+  catkin_package(
+    INCLUDE_DIRS
+    CATKIN_DEPENDS
+    roscpp
+    humanoid_robot_controller_msgs
+    roscpp
+    sensor_msgs
+    std_msgs
+  )
+else()
+  ament_package()
+endif()
 
-################################################################################
-# Declare catkin specific configuration to be passed to dependent projects
-################################################################################
-catkin_package(
-  INCLUDE_DIRS
-  CATKIN_DEPENDS
-  roscpp
-  humanoid_robot_controller_msgs
-  roscpp
-  sensor_msgs
-  std_msgs
-)
 
-################################################################################
-# Build
-################################################################################
 include_directories(${catkin_INCLUDE_DIRS})
 
 add_executable(
@@ -61,9 +48,6 @@ target_link_libraries(
   ${catkin_LIBRARIES}
 )
 
-################################################################################
-# Install
-################################################################################
 install(
   TARGETS read_write
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -73,7 +57,3 @@ install(
   DIRECTORY launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
-
-################################################################################
-# Test
-################################################################################
