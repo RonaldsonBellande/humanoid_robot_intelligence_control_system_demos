@@ -25,8 +25,6 @@ if($ENV{ROS_VERSION} EQUAL 1)
     sensor_msgs
     std_msgs
   )
-else()
-  ament_package()
 endif()
 
 
