@@ -17,7 +17,6 @@ if($ENV{ROS_VERSION} EQUAL 1)
     humanoid_robot_math
     humanoid_robot_ball_detector
   )
-
   find_package(Boost REQUIRED COMPONENTS thread)
   find_package(Eigen3 REQUIRED)
 else()
@@ -61,8 +60,6 @@ if($ENV{ROS_VERSION} EQUAL 1)
     humanoid_robot_ball_detector
     DEPENDS Boost EIGEN3
   )
-else()
-  ament_package()
 endif()
 
 
