@@ -19,10 +19,10 @@
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 
+#include "humanoid_robot_controller_msgs/SyncWriteItem.h"
 #include "humanoid_robot_demo/action_demo.h"
 #include "humanoid_robot_demo/soccer_demo.h"
 #include "humanoid_robot_demo/vision_demo.h"
-#include "humanoid_robot_controller_msgs/SyncWriteItem.h"
 #include "humanoid_robot_math/humanoid_robot_linear_algebra.h"
 
 enum Demo_Status {
@@ -62,23 +62,29 @@ int main(int argc, char **argv) {
 
   // create ros wrapper object
   humanoid_robot_op::OPDemo *current_demo = NULL;
-  humanoid_robot_op::SoccerDemo *soccer_demo = new humanoid_robot_op::SoccerDemo();
-  humanoid_robot_op::ActionDemo *action_demo = new humanoid_robot_op::ActionDemo();
-  humanoid_robot_op::VisionDemo *vision_demo = new humanoid_robot_op::VisionDemo();
+  humanoid_robot_op::SoccerDemo *soccer_demo =
+      new humanoid_robot_op::SoccerDemo();
+  humanoid_robot_op::ActionDemo *action_demo =
+      new humanoid_robot_op::ActionDemo();
+  humanoid_robot_op::VisionDemo *vision_demo =
+      new humanoid_robot_op::VisionDemo();
 
   ros::NodeHandle nh(ros::this_node::getName());
 
-  init_pose_pub = nh.advertise<std_msgs::String>("/humanoid_robot/base/ini_pose", 0);
+  init_pose_pub =
+      nh.advertise<std_msgs::String>("/humanoid_robot/base/ini_pose", 0);
   play_sound_pub = nh.advertise<std_msgs::String>("/play_sound_file", 0);
   led_pub = nh.advertise<humanoid_robot_controller_msgs::SyncWriteItem>(
       "/humanoid_robot/sync_write_item", 0);
-  dxl_torque_pub = nh.advertise<std_msgs::String>("/humanoid_robot/dxl_torque", 0);
+  dxl_torque_pub =
+      nh.advertise<std_msgs::String>("/humanoid_robot/dxl_torque", 0);
   ros::Subscriber buttuon_sub =
       nh.subscribe("/humanoid_robot/open_cr/button", 1, buttonHandlerCallback);
   ros::Subscriber mode_command_sub =
       nh.subscribe("/humanoid_robot/mode_command", 1, demoModeCommandCallback);
 
-  default_mp3_path = ros::package::getPath("humanoid_robot_demo") + "/data/mp3/";
+  default_mp3_path =
+      ros::package::getPath("humanoid_robot_demo") + "/data/mp3/";
 
   ros::start();
 

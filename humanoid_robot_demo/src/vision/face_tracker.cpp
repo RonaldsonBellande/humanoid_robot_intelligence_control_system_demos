@@ -28,13 +28,13 @@ FaceTracker::FaceTracker()
       "/humanoid_robot/head_control/set_joint_states_offset", 0);
   head_joint_pub_ = nh_.advertise<sensor_msgs::JointState>(
       "/humanoid_robot/head_control/set_joint_states", 0);
-  head_scan_pub_ =
-      nh_.advertise<std_msgs::String>("/humanoid_robot/head_control/scan_command", 0);
+  head_scan_pub_ = nh_.advertise<std_msgs::String>(
+      "/humanoid_robot/head_control/scan_command", 0);
 
   face_position_sub_ = nh_.subscribe("/face_position", 1,
                                      &FaceTracker::facePositionCallback, this);
-  // face_tracking_command_sub_ = nh_.subscribe("/humanoid_robot/demo_command", 1,
-  // &FaceTracker::faceTrackerCommandCallback, this);
+  // face_tracking_command_sub_ = nh_.subscribe("/humanoid_robot/demo_command",
+  // 1, &FaceTracker::faceTrackerCommandCallback, this);
 }
 
 FaceTracker::~FaceTracker() {}

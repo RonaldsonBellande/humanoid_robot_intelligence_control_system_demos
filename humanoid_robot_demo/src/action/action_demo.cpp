@@ -158,8 +158,9 @@ void ActionDemo::callbackThread() {
   buttuon_sub_ = nh.subscribe("/humanoid_robot/open_cr/button", 1,
                               &ActionDemo::buttonHandlerCallback, this);
 
-  is_running_client_ = nh.serviceClient<humanoid_robot_action_module_msgs::IsRunning>(
-      "/humanoid_robot/action/is_running");
+  is_running_client_ =
+      nh.serviceClient<humanoid_robot_action_module_msgs::IsRunning>(
+          "/humanoid_robot/action/is_running");
   set_joint_module_client_ =
       nh.serviceClient<humanoid_robot_controller_msgs::SetModule>(
           "/humanoid_robot/set_present_ctrl_modules");

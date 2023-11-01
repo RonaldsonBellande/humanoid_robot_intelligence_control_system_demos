@@ -32,8 +32,8 @@ SoccerDemo::SoccerDemo()
 
   ros::NodeHandle nh(ros::this_node::getName());
 
-  std::string default_path =
-      ros::package::getPath("humanoid_robot_gui_demo") + "/config/gui_config.yaml";
+  std::string default_path = ros::package::getPath("humanoid_robot_gui_demo") +
+                             "/config/gui_config.yaml";
   std::string path = nh.param<std::string>("demo_config", default_path);
   parseJointNameFromYaml(path);
 
@@ -166,8 +166,9 @@ void SoccerDemo::callbackThread() {
   ros::NodeHandle nh(ros::this_node::getName());
 
   // subscriber & publisher
-  module_control_pub_ = nh.advertise<humanoid_robot_controller_msgs::JointCtrlModule>(
-      "/humanoid_robot/set_joint_ctrl_modules", 0);
+  module_control_pub_ =
+      nh.advertise<humanoid_robot_controller_msgs::JointCtrlModule>(
+          "/humanoid_robot/set_joint_ctrl_modules", 0);
   motion_index_pub_ =
       nh.advertise<std_msgs::Int32>("/humanoid_robot/action/page_num", 0);
   rgb_led_pub_ = nh.advertise<humanoid_robot_controller_msgs::SyncWriteItem>(
@@ -180,8 +181,9 @@ void SoccerDemo::callbackThread() {
   imu_data_sub_ = nh.subscribe("/humanoid_robot/open_cr/imu", 1,
                                &SoccerDemo::imuDataCallback, this);
 
-  is_running_client_ = nh.serviceClient<humanoid_robot_action_module_msgs::IsRunning>(
-      "/humanoid_robot/action/is_running");
+  is_running_client_ =
+      nh.serviceClient<humanoid_robot_action_module_msgs::IsRunning>(
+          "/humanoid_robot/action/is_running");
   set_joint_module_client_ =
       nh.serviceClient<humanoid_robot_controller_msgs::SetJointModule>(
           "/humanoid_robot/set_present_joint_ctrl_modules");

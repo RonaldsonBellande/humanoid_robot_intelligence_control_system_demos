@@ -30,7 +30,8 @@ ButtonTest::ButtonTest() : SPIN_RATE(30), led_count_(0), rgb_led_count_(0) {
   boost::thread process_thread =
       boost::thread(boost::bind(&ButtonTest::processThread, this));
 
-  default_mp3_path_ = ros::package::getPath("humanoid_robot_demo") + "/data/mp3/test/";
+  default_mp3_path_ =
+      ros::package::getPath("humanoid_robot_demo") + "/data/mp3/test/";
 }
 
 ButtonTest::~ButtonTest() {}

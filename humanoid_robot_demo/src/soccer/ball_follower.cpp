@@ -39,8 +39,9 @@ BallFollower::BallFollower()
 
   set_walking_command_pub_ =
       nh_.advertise<std_msgs::String>("/humanoid_robot/walking/command", 0);
-  set_walking_param_pub_ = nh_.advertise<humanoid_robot_walking_module_msgs::WalkingParam>(
-      "/humanoid_robot/walking/set_params", 0);
+  set_walking_param_pub_ =
+      nh_.advertise<humanoid_robot_walking_module_msgs::WalkingParam>(
+          "/humanoid_robot/walking/set_params", 0);
   get_walking_param_client_ =
       nh_.serviceClient<humanoid_robot_walking_module_msgs::GetWalkingParam>(
           "/humanoid_robot/walking/get_params");
@@ -196,7 +197,7 @@ bool BallFollower::processFollowing(double x_angle, double y_angle,
                                         << (y_angle * 180 / M_PI));
     ROS_INFO_STREAM_COND(DEBUG_PRINT, "foot to kick : " << ball_x_angle);
 
-    ROS_INFO("In range [%d | %d]", count_to_kick_, ball_x_angle);
+    ROS_INFO("In range [%d | %f]", count_to_kick_, ball_x_angle);
 
     // ball queue
     //    if(ball_position_queue_.size() >= 5)
