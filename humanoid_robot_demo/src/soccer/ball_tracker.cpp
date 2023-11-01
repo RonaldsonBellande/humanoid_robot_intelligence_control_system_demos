@@ -39,8 +39,8 @@ BallTracker::BallTracker()
       "/humanoid_robot/head_control/set_joint_states_offset", 0);
   head_joint_pub_ = nh_.advertise<sensor_msgs::JointState>(
       "/humanoid_robot/head_control/set_joint_states", 0);
-  head_scan_pub_ =
-      nh_.advertise<std_msgs::String>("/humanoid_robot/head_control/scan_command", 0);
+  head_scan_pub_ = nh_.advertise<std_msgs::String>(
+      "/humanoid_robot/head_control/scan_command", 0);
   //  error_pub_ =
   //  nh_.advertise<std_msgs::Float64MultiArray>("/ball_tracker/errors", 0);
 
