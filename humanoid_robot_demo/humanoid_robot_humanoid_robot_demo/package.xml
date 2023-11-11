@@ -8,21 +8,35 @@
   <license>Apache 2.0</license>
   <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
 
-  <build_depend>humanoid_robot_ball_detector</build_depend>
-  <build_depend>humanoid_robot_bringup</build_depend>
-  <build_depend>humanoid_robot_demo</build_depend>
+  <build_depend condition="$ROS_VERSION == 1">humanoid_robot_ball_detector</build_depend>
+  <build_depend condition="$ROS_VERSION == 1">humanoid_robot_bringup</build_depend>
+  <build_depend condition="$ROS_VERSION == 1">humanoid_robot_demo</build_depend>
 
-  <build_export_depend>humanoid_robot_ball_detector</build_export_depend>
-  <build_export_depend>humanoid_robot_bringup</build_export_depend>
-  <build_export_depend>humanoid_robot_demo</build_export_depend>
+  <build_export_depend condition="$ROS_VERSION == 1">humanoid_robot_ball_detector</build_export_depend>
+  <build_export_depend condition="$ROS_VERSION == 1">humanoid_robot_bringup</build_export_depend>
+  <build_export_depend condition="$ROS_VERSION == 1">humanoid_robot_demo</build_export_depend>
 
-  <exec_depend>humanoid_robot_ball_detector</exec_depend>
-  <exec_depend>humanoid_robot_bringup</exec_depend>
-  <exec_depend>humanoid_robot_demo</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 1">humanoid_robot_ball_detector</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 1">humanoid_robot_bringup</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 1">humanoid_robot_demo</exec_depend>
 
-  <export>
-    <metapackage />
-  </export>
+
+  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+
+  <build_depend condition="$ROS_VERSION == 2">humanoid_robot_ball_detector</build_depend>
+  <build_depend condition="$ROS_VERSION == 2">humanoid_robot_bringup</build_depend>
+  <build_depend condition="$ROS_VERSION == 2">humanoid_robot_demo</build_depend>
+
+  <build_export_depend condition="$ROS_VERSION == 2">humanoid_robot_ball_detector</build_export_depend>
+  <build_export_depend condition="$ROS_VERSION == 2">humanoid_robot_bringup</build_export_depend>
+  <build_export_depend condition="$ROS_VERSION == 2">humanoid_robot_demo</build_export_depend>
+
+  <exec_depend condition="$ROS_VERSION == 2">humanoid_robot_ball_detector</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">humanoid_robot_bringup</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">humanoid_robot_demo</exec_depend>
+
+
+  <export></export>
 </package>
