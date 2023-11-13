@@ -71,20 +71,25 @@ int main(int argc, char **argv) {
 
   ros::NodeHandle nh(ros::this_node::getName());
 
-  init_pose_pub =
-      nh.advertise<std_msgs::String>("/humanoid_robot_intelligence_control_system/base/ini_pose", 0);
+  init_pose_pub = nh.advertise<std_msgs::String>(
+      "/humanoid_robot_intelligence_control_system/base/ini_pose", 0);
   play_sound_pub = nh.advertise<std_msgs::String>("/play_sound_file", 0);
-  led_pub = nh.advertise<humanoid_robot_intelligence_control_system_controller_msgs::SyncWriteItem>(
-      "/humanoid_robot_intelligence_control_system/sync_write_item", 0);
-  dxl_torque_pub =
-      nh.advertise<std_msgs::String>("/humanoid_robot_intelligence_control_system/dxl_torque", 0);
+  led_pub =
+      nh.advertise<humanoid_robot_intelligence_control_system_controller_msgs::
+                       SyncWriteItem>(
+          "/humanoid_robot_intelligence_control_system/sync_write_item", 0);
+  dxl_torque_pub = nh.advertise<std_msgs::String>(
+      "/humanoid_robot_intelligence_control_system/dxl_torque", 0);
   ros::Subscriber buttuon_sub =
-      nh.subscribe("/humanoid_robot_intelligence_control_system/open_cr/button", 1, buttonHandlerCallback);
+      nh.subscribe("/humanoid_robot_intelligence_control_system/open_cr/button",
+                   1, buttonHandlerCallback);
   ros::Subscriber mode_command_sub =
-      nh.subscribe("/humanoid_robot_intelligence_control_system/mode_command", 1, demoModeCommandCallback);
+      nh.subscribe("/humanoid_robot_intelligence_control_system/mode_command",
+                   1, demoModeCommandCallback);
 
   default_mp3_path =
-      ros::package::getPath("humanoid_robot_intelligence_control_system_demo") + "/data/mp3/";
+      ros::package::getPath("humanoid_robot_intelligence_control_system_demo") +
+      "/data/mp3/";
 
   ros::start();
 
@@ -92,7 +97,8 @@ int main(int argc, char **argv) {
   ros::Rate loop_rate(SPIN_RATE);
 
   // wait for starting of manager
-  std::string manager_name = "/humanoid_robot_intelligence_control_system_manager";
+  std::string manager_name =
+      "/humanoid_robot_intelligence_control_system_manager";
   while (ros::ok()) {
     ros::Duration(1.0).sleep();
 
@@ -272,7 +278,8 @@ void playSound(const std::string &path) {
 }
 
 void setLED(int led) {
-  humanoid_robot_intelligence_control_system_controller_msgs::SyncWriteItem syncwrite_msg;
+  humanoid_robot_intelligence_control_system_controller_msgs::SyncWriteItem
+      syncwrite_msg;
   syncwrite_msg.item_name = "LED";
   syncwrite_msg.joint_name.push_back("open-cr");
   syncwrite_msg.value.push_back(led);
