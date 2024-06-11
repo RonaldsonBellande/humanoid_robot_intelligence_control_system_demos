@@ -51,8 +51,6 @@ the License.
     humanoid_robot_intelligence_control_system_camera_setting_tool</build_depend>
   <build_depend condition="$ROS_VERSION == 1">
     humanoid_robot_intelligence_control_system_web_setting_tool</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">ros_madplay_player</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">face_detection</build_depend>
 
   <build_export_depend condition="$ROS_VERSION == 1">roscpp</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">roslib</build_export_depend>
@@ -78,8 +76,6 @@ the License.
     humanoid_robot_intelligence_control_system_camera_setting_tool</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">
     humanoid_robot_intelligence_control_system_web_setting_tool</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">ros_madplay_player</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">face_detection</build_export_depend>
 
   <exec_depend condition="$ROS_VERSION == 1">roscpp</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">roslib</exec_depend>
@@ -104,8 +100,6 @@ the License.
     humanoid_robot_intelligence_control_system_camera_setting_tool</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">
     humanoid_robot_intelligence_control_system_web_setting_tool</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">ros_madplay_player</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">face_detection</exec_depend>
 
 
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
@@ -133,8 +127,6 @@ the License.
     humanoid_robot_intelligence_control_system_camera_setting_tool</build_depend>
   <build_depend condition="$ROS_VERSION == 2">
     humanoid_robot_intelligence_control_system_web_setting_tool</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">ros_madplay_player</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">face_detection</build_depend>
 
   <build_export_depend condition="$ROS_VERSION == 2">roscpp</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">roslib</build_export_depend>
@@ -160,8 +152,6 @@ the License.
     humanoid_robot_intelligence_control_system_camera_setting_tool</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">
     humanoid_robot_intelligence_control_system_web_setting_tool</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">ros_madplay_player</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">face_detection</build_export_depend>
 
   <exec_depend condition="$ROS_VERSION == 2">roscpp</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">roslib</exec_depend>
@@ -186,7 +176,5 @@ the License.
     humanoid_robot_intelligence_control_system_camera_setting_tool</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">
     humanoid_robot_intelligence_control_system_web_setting_tool</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">ros_madplay_player</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">face_detection</exec_depend>
 
 </package>
