@@ -44,7 +44,6 @@ the License.
   <build_depend condition="$ROS_VERSION == 1">message_runtime</build_depend>
   <build_depend condition="$ROS_VERSION == 1">message_runtime</build_depend>
   <build_depend condition="$ROS_VERSION == 1">usb_cam</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">uvc_camera</build_depend>
 
   <build_export_depend condition="$ROS_VERSION == 1">roscpp</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">roslib</build_export_depend>
@@ -61,7 +60,6 @@ the License.
   <build_export_depend condition="$ROS_VERSION == 1">message_runtime</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">message_runtime</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">usb_cam</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">uvc_camera</build_export_depend>
 
   <exec_depend condition="$ROS_VERSION == 1">roscpp</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">roslib</exec_depend>
@@ -78,7 +76,6 @@ the License.
   <exec_depend condition="$ROS_VERSION == 1">message_runtime</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">message_runtime</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">usb_cam</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">uvc_camera</exec_depend>
 
 
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
@@ -98,7 +95,6 @@ the License.
   <build_depend condition="$ROS_VERSION == 2">message_runtime</build_depend>
   <build_depend condition="$ROS_VERSION == 2">message_runtime</build_depend>
   <build_depend condition="$ROS_VERSION == 2">usb_cam</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">uvc_camera</build_depend>
 
   <build_export_depend condition="$ROS_VERSION == 2">roscpp</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">roslib</build_export_depend>
@@ -115,7 +111,6 @@ the License.
   <build_export_depend condition="$ROS_VERSION == 2">message_runtime</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">message_runtime</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">usb_cam</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">uvc_camera</build_export_depend>
 
   <exec_depend condition="$ROS_VERSION == 2">roscpp</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">roslib</exec_depend>
@@ -132,7 +127,5 @@ the License.
   <exec_depend condition="$ROS_VERSION == 2">message_runtime</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">message_runtime</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">usb_cam</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">uvc_camera</exec_depend>
-
 
 </package>
